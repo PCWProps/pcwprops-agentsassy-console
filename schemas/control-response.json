@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "control-response",
+  "type": "object",
+  "properties": {
+    "schema": { "type": "object" },
+    "requestId": { "type": "string" },
+    "decision": { "type": "object" },
+    "policy": { "type": "object" },
+    "result": { "type": "object" },
+    "status": { "type": "string" },
+    "issuedAt": { "type": "string" }
+  },
+  "required": ["requestId", "decision", "status"]
+}

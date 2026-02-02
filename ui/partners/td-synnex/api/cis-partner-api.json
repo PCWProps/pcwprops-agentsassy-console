@@ -1,0 +1,345 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "TD SYNNEX Partner API",
+    "description" : "These APIs provide comprehensive access to product information, order management, and other business operations for seamless integration with your applications. With these services, you can perform price and availability queries, submit purchase orders, manage invoices, and more, all in real time.\n\n - Click [Download JSON Schema](/api-center/public/api/project/cis-partner-api/swagger/prod/download) to import into your API management tool (e.g., Postman).\n",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "https://api.us.tdsynnex.com",
+    "description" : "Sandbox Server US"
+  }, {
+    "url" : "https://api.ca.tdsynnex.com",
+    "description" : "Sandbox Server CA"
+  }, {
+    "url" : "https://api.us.tdsynnex.com",
+    "description" : "Production Server US"
+  }, {
+    "url" : "https://api.ca.tdsynnex.com",
+    "description" : "Production Server CA"
+  } ],
+  "tags" : [ {
+    "name" : "Orders",
+    "description" : "Endpoints related to order processing and queries"
+  }, {
+    "name" : "Invoices",
+    "description" : "Endpoints for accessing invoice information and reports"
+  }, {
+    "name" : "Price & Availability",
+    "description" : "Real-time product pricing and inventory endpoints"
+  } ],
+  "paths" : {
+    "/api/v1/orders/orderNo/{orderNo}" : {
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Partner Order Info Query By OrderNo",
+        "description" : "Retrieve partner order details using the specified order number.\n",
+        "operationId" : "ORDERS_GET_getOrderByOrderNo",
+        "parameters" : [ {
+          "name" : "orderNo",
+          "in" : "path",
+          "description" : "The order number to query.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response with order details.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "order_details" : {
+                    "summary" : "Order details response",
+                    "value" : "[\n  {\n    \"orderNumber\": \"134492797\",\n    \"invoiceNumber\": \"XXXXXXX\",\n    \"purchaseOrderNumber\": \"POXXXXXX\",\n    \"salesOrderNumber\": \"XXXXXXX\",\n    \"orderStatus\": \"Open\",\n    \"orderStatusCode\": null,\n    \"orderPlacedDate\": \"2022-11-02T00:00:00Z\",\n    \"total\": \"5097\",\n    \"tax\": \"0.00\",\n    \"freight\": \"29.03\",\n    \"otherFees\": \"0.00\",\n    \"resellerContactName\": null,\n    \"shipTo\": {\n      \"country\": \"US\",\n      \"name\": \"John Doe\",\n      \"phoneNumber\": \"XXXXXXXXXX\",\n      \"name2\": \"DEMO ACCOUNT\",\n      \"postalCode\": \"XXXXX\",\n      \"city\": \"CityName\",\n      \"email\": \"example@example.com\",\n      \"addressline3\": null,\n      \"addressline1\": \"123 Main St.\",\n      \"stateOrProvince\": \"ST\",\n      \"addressline2\": \"Suite 100\"\n    },\n    \"endUser\": {\n      \"country\": null,\n      \"name\": \"Jane Doe\",\n      \"phoneNumber\": \" \",\n      \"postalCode\": \"XXXXX\",\n      \"city\": \"CityName\",\n      \"email\": \" \",\n      \"addressline3\": null,\n      \"addressline1\": \"test\",\n      \"stateOrProvince\": \"ST\",\n      \"addressline2\": \" \"\n    },\n    \"lines\": [\n      {\n        \"lineNumber\": \"1\",\n        \"partNumber\": \"XXXXXXX\",\n        \"partDescription\": \"Product Description 1\",\n        \"manufacturerPartNumber\": \"ABC123\",\n        \"customerPOLineNumber\": null,\n        \"customerPartNumber\": null,\n        \"customerPO\": \"POXXXXXX\",\n        \"totalQuantity\": \"1\",\n        \"unitCost\": \"1274.13\",\n        \"extendedCost\": \"1274.13\",\n        \"bundleIndicator\": false,\n        \"nonReturnable\": true,\n        \"subLines\": [\n          {\n            \"displayLineNumber\": \"1\",\n            \"techDataPONumber\": null,\n            \"vendorSalesOrderNumber\": null,\n            \"manufacturerPartNumber\": \"ABC123\",\n            \"partNumber\": \"XXXXXXX\",\n            \"estimatedToShip\": null,\n            \"quantity\": \"1\",\n            \"unitCost\": \"1274.13\",\n            \"extendedCost\": \"1274.13\",\n            \"parentLine\": \"1\",\n            \"invoices\": [\n              \"XXXXXXX\"\n            ],\n            \"serialNumbers\": [],\n            \"positionType\": \"SI\",\n            \"vendorName\": \"Vendor Name\",\n            \"contractNumber\": null,\n            \"contractStartDate\": null,\n            \"contractEndDate\": null,\n            \"lineStatus\": null,\n            \"tracking\": [],\n            \"backordered\": false,\n            \"zeroDollarSKU\": false,\n            \"vendorSubline\": false,\n            \"multiLineKit\": false\n          }\n        ],\n        \"bundleItems\": null,\n        \"lineCount\": \"1\",\n        \"positionType\": \"SI\",\n        \"configId\": null,\n        \"serialNumbers\": [],\n        \"licenseKeys\": null,\n        \"hasMultipleInvoices\": false,\n        \"hasMultipleTrackingNumbers\": false,\n        \"hasMultipleCarrier\": false,\n        \"uniqueID\": null,\n        \"localManufacturer\": \"Vendor Name\",\n        \"lineStatus\": \"Open\",\n        \"lineStatusCode\": null\n      },\n      {\n        \"lineNumber\": \"2\",\n        \"partNumber\": \"XXXXXXX\",\n        \"partDescription\": \"Product Description 2\",\n        \"manufacturerPartNumber\": \"ABC123\",\n        \"customerPOLineNumber\": null,\n        \"customerPartNumber\": null,\n        \"customerPO\": \"POXXXXXX\",\n        \"totalQuantity\": \"3\",\n        \"unitCost\": \"1274.13\",\n        \"extendedCost\": \"3822.39\",\n        \"bundleIndicator\": false,\n        \"nonReturnable\": true,\n        \"subLines\": [\n          {\n            \"displayLineNumber\": \"1\",\n            \"techDataPONumber\": null,\n            \"vendorSalesOrderNumber\": null,\n            \"manufacturerPartNumber\": \"ABC123\",\n            \"partNumber\": \"XXXXXXX\",\n            \"estimatedToShip\": null,\n            \"quantity\": \"3\",\n            \"unitCost\": \"1274.13\",\n            \"extendedCost\": \"3822.39\",\n            \"parentLine\": \"2\",\n            \"invoices\": [\n              \"XXXXXXX\"\n            ],\n            \"serialNumbers\": [],\n            \"positionType\": \"SI\",\n            \"vendorName\": \"Vendor Name\",\n            \"contractNumber\": null,\n            \"contractStartDate\": null,\n            \"contractEndDate\": null,\n            \"lineStatus\": null,\n            \"tracking\": [],\n            \"backordered\": false,\n            \"zeroDollarSKU\": false,\n            \"vendorSubline\": false,\n            \"multiLineKit\": false\n          }\n        ],\n        \"bundleItems\": null,\n        \"lineCount\": \"1\",\n        \"positionType\": \"SI\",\n        \"configId\": null,\n        \"serialNumbers\": [],\n        \"licenseKeys\": null,\n        \"hasMultipleInvoices\": false,\n        \"hasMultipleTrackingNumbers\": false,\n        \"hasMultipleCarrier\": false,\n        \"uniqueID\": null,\n        \"localManufacturer\": \"Vendor Name\",\n        \"lineStatus\": \"Open\",\n        \"lineStatusCode\": null\n      }\n    ],\n    \"uniqueID\": null,\n    \"errorMessage\": null\n  }\n]\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/orderNo/{orderNo}/orderType/{orderType}" : {
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Partner Order Info Query By OrderNo And OrderType",
+        "description" : "Retrieve partner order details using both order number and order type.\n",
+        "operationId" : "ORDERS_GET_getOrderByOrderNoAndOrderType",
+        "parameters" : [ {
+          "name" : "orderNo",
+          "in" : "path",
+          "description" : "The order number.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "orderType",
+          "in" : "path",
+          "description" : "The type of order (SO or PO).",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response with order details.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "order_details" : {
+                    "summary" : "Order details response",
+                    "value" : "[\n  {\n    \"orderNumber\": \"134492797\",\n    \"invoiceNumber\": \"XXXXXXX\",\n    \"purchaseOrderNumber\": \"POXXXXXX\",\n    \"salesOrderNumber\": \"XXXXXXX\",\n    \"orderStatus\": \"Open\",\n    \"orderStatusCode\": null,\n    \"orderPlacedDate\": \"2022-11-02T00:00:00Z\",\n    \"total\": \"5097\",\n    \"tax\": \"0.00\",\n    \"freight\": \"29.03\",\n    \"otherFees\": \"0.00\",\n    \"resellerContactName\": null,\n    \"shipTo\": {\n      \"country\": \"US\",\n      \"name\": \"John Doe\",\n      \"phoneNumber\": \"XXXXXXXXXX\",\n      \"name2\": \"DEMO ACCOUNT\",\n      \"postalCode\": \"XXXXX\",\n      \"city\": \"CityName\",\n      \"email\": \"example@example.com\",\n      \"addressline3\": null,\n      \"addressline1\": \"123 Main St.\",\n      \"stateOrProvince\": \"ST\",\n      \"addressline2\": \"Suite 100\"\n    },\n    \"endUser\": {\n      \"country\": null,\n      \"name\": \"Jane Doe\",\n      \"phoneNumber\": \" \",\n      \"postalCode\": \"XXXXX\",\n      \"city\": \"CityName\",\n      \"email\": \" \",\n      \"addressline3\": null,\n      \"addressline1\": \"test\",\n      \"stateOrProvince\": \"ST\",\n      \"addressline2\": \" \"\n    },\n    \"lines\": [\n      {\n        \"lineNumber\": \"1\",\n        \"partNumber\": \"XXXXXXX\",\n        \"partDescription\": \"Product Description 1\",\n        \"manufacturerPartNumber\": \"ABC123\",\n        \"customerPOLineNumber\": null,\n        \"customerPartNumber\": null,\n        \"customerPO\": \"POXXXXXX\",\n        \"totalQuantity\": \"1\",\n        \"unitCost\": \"1274.13\",\n        \"extendedCost\": \"1274.13\",\n        \"bundleIndicator\": false,\n        \"nonReturnable\": true,\n        \"subLines\": [\n          {\n            \"displayLineNumber\": \"1\",\n            \"techDataPONumber\": null,\n            \"vendorSalesOrderNumber\": null,\n            \"manufacturerPartNumber\": \"ABC123\",\n            \"partNumber\": \"XXXXXXX\",\n            \"estimatedToShip\": null,\n            \"quantity\": \"1\",\n            \"unitCost\": \"1274.13\",\n            \"extendedCost\": \"1274.13\",\n            \"parentLine\": \"1\",\n            \"invoices\": [\n              \"XXXXXXX\"\n            ],\n            \"serialNumbers\": [],\n            \"positionType\": \"SI\",\n            \"vendorName\": \"Vendor Name\",\n            \"contractNumber\": null,\n            \"contractStartDate\": null,\n            \"contractEndDate\": null,\n            \"lineStatus\": null,\n            \"tracking\": [],\n            \"backordered\": false,\n            \"zeroDollarSKU\": false,\n            \"vendorSubline\": false,\n            \"multiLineKit\": false\n          }\n        ],\n        \"bundleItems\": null,\n        \"lineCount\": \"1\",\n        \"positionType\": \"SI\",\n        \"configId\": null,\n        \"serialNumbers\": [],\n        \"licenseKeys\": null,\n        \"hasMultipleInvoices\": false,\n        \"hasMultipleTrackingNumbers\": false,\n        \"hasMultipleCarrier\": false,\n        \"uniqueID\": null,\n        \"localManufacturer\": \"Vendor Name\",\n        \"lineStatus\": \"Open\",\n        \"lineStatusCode\": null\n      },\n      {\n        \"lineNumber\": \"2\",\n        \"partNumber\": \"XXXXXXX\",\n        \"partDescription\": \"Product Description 2\",\n        \"manufacturerPartNumber\": \"ABC123\",\n        \"customerPOLineNumber\": null,\n        \"customerPartNumber\": null,\n        \"customerPO\": \"POXXXXXX\",\n        \"totalQuantity\": \"3\",\n        \"unitCost\": \"1274.13\",\n        \"extendedCost\": \"3822.39\",\n        \"bundleIndicator\": false,\n        \"nonReturnable\": true,\n        \"subLines\": [\n          {\n            \"displayLineNumber\": \"1\",\n            \"techDataPONumber\": null,\n            \"vendorSalesOrderNumber\": null,\n            \"manufacturerPartNumber\": \"ABC123\",\n            \"partNumber\": \"XXXXXXX\",\n            \"estimatedToShip\": null,\n            \"quantity\": \"3\",\n            \"unitCost\": \"1274.13\",\n            \"extendedCost\": \"3822.39\",\n            \"parentLine\": \"2\",\n            \"invoices\": [\n              \"XXXXXXX\"\n            ],\n            \"serialNumbers\": [],\n            \"positionType\": \"SI\",\n            \"vendorName\": \"Vendor Name\",\n            \"contractNumber\": null,\n            \"contractStartDate\": null,\n            \"contractEndDate\": null,\n            \"lineStatus\": null,\n            \"tracking\": [],\n            \"backordered\": false,\n            \"zeroDollarSKU\": false,\n            \"vendorSubline\": false,\n            \"multiLineKit\": false\n          }\n        ],\n        \"bundleItems\": null,\n        \"lineCount\": \"1\",\n        \"positionType\": \"SI\",\n        \"configId\": null,\n        \"serialNumbers\": [],\n        \"licenseKeys\": null,\n        \"hasMultipleInvoices\": false,\n        \"hasMultipleTrackingNumbers\": false,\n        \"hasMultipleCarrier\": false,\n        \"uniqueID\": null,\n        \"localManufacturer\": \"Vendor Name\",\n        \"lineStatus\": \"Open\",\n        \"lineStatusCode\": null\n      }\n    ],\n    \"uniqueID\": null,\n    \"errorMessage\": null\n  }\n]\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/orders/shipment/details/orderNo/{orderNo}" : {
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Partner Order Shipment Query By OrderNo",
+        "description" : "Partner Order Shipment Query By OrderNo.\n",
+        "operationId" : "ORDERS_GET_getOrderShipmentByOrderNo",
+        "parameters" : [ {
+          "name" : "orderNo",
+          "in" : "path",
+          "description" : "The order number to retrieve shipment details.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "shipment_details" : {
+                    "summary" : "Shipment details response",
+                    "value" : "{\n    \"orderNumber\": \"134493180\",\n    \"purchaseOrder\": \"PO10018654_TEST171\",\n    \"orderStatus\": \"Open\",\n    \"orderStatusCode\": \"1\",\n    \"uniqueID\": null,\n    \"lines\": [\n        {\n            \"displayLineNumber\": \"1\",\n            \"lineNumber\": \"1\",\n            \"partNumber\": \"5026292\",\n            \"manufacturerPartNumber\": \"2405C002\",\n            \"configStatus\": null,\n            \"totalQuantity\": \"1\",\n            \"hasMultipleTrackingNumbers\": false,\n            \"hasMultipleCarrier\": false,\n            \"lineStatusCode\": \"1\",\n            \"lineStatus\": \"Open\",\n            \"uniqueID\": null,\n            \"subLines\": [\n                {\n                    \"displayLineNumber\": \"1\",\n                    \"techDataPONumber\": null,\n                    \"vendorSalesOrderNumber\": null,\n                    \"quantity\": \"1\",\n                    \"shipDate\": null,\n                    \"warehouse\": \"Chino,CA\",\n                    \"deliveryNumber\": null,\n                    \"lineStatus\": \"Open\",\n                    \"tracking\": []\n                }\n            ]\n        }\n    ],\n    \"errorMessage\": null\n}\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/webservice/ltd/partner/order/{orderNo}/QUOTEID" : {
+      "get" : {
+        "tags" : [ "Orders" ],
+        "summary" : "Partner Quote Status Query by OrderNo",
+        "description" : "Partner Quote Status Query by OrderNo.\n",
+        "operationId" : "ORDERS_GET_webserviceLtdPartnerOrderInputTypeQUOTEID",
+        "parameters" : [ {
+          "name" : "orderNo",
+          "in" : "path",
+          "description" : "The order number to retrieve quote details.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "quote_details" : {
+                    "summary" : "Quote details response",
+                    "value" : "[\n  {\n    \"orderNumber\": \"134492797\",\n    \"invoiceNumber\": \"134492797\",\n    \"purchaseOrderNumber\": \"PO1001WQWEQ\",\n    \"salesOrderNumber\": \"134492797\",\n    \"orderStatus\": \"Open\",\n    \"orderStatusCode\": null,\n    \"orderPlacedDate\": \"2022-11-02T00:00:00Z\",\n    \"total\": \"5097\",\n    \"tax\": \"0.00\",\n    \"freight\": \"29.03\",\n    \"otherFees\": \"0.00\",\n    \"resellerContactName\": null,\n    \"shipTo\": {\n      \"country\": \"US\",\n      \"name\": \"Austin Li\",\n      \"phoneNumber\": \"9254592334\",\n      \"name2\": \"SYNNEX DEMO ACCT\",\n      \"postalCode\": \"29651\",\n      \"city\": \"GREER\",\n      \"email\": \"ecittest@synnex.com\",\n      \"addressline3\": null,\n      \"addressline1\": \"39 PELHAMRIDGE RD.\",\n      \"stateOrProvince\": \"SC\",\n      \"addressline2\": \"XXX DO NOT SHIP XX\"\n    },\n    \"endUser\": {\n      \"country\": null,\n      \"name\": \"Austin Li\",\n      \"phoneNumber\": \" \",\n      \"postalCode\": \"36421\",\n      \"city\": \"ANDALUSIA\",\n      \"email\": \" \",\n      \"addressline3\": null,\n      \"addressline1\": \"test\",\n      \"stateOrProvince\": \"AL\",\n      \"addressline2\": \" \"\n    },\n    \"lines\": [\n      {\n        \"lineNumber\": \"1\",\n        \"partNumber\": \"6501961\",\n        \"partDescription\": \"SBUY EliteBook 645 G9 5875U 16GB/512GB/AMD Radeon/14.0 inch\",\n        \"manufacturerPartNumber\": \"669Y7UT#ABA\",\n        \"customerPOLineNumber\": null,\n        \"customerPartNumber\": null,\n        \"customerPO\": \"PO1001WQWEQ\",\n        \"totalQuantity\": \"1\",\n        \"unitCost\": \"1274.13\",\n        \"extendedCost\": \"1274.13\",\n        \"bundleIndicator\": false,\n        \"nonReturnable\": true,\n        \"subLines\": [\n          {\n            \"displayLineNumber\": \"1\",\n            \"techDataPONumber\": null,\n            \"vendorSalesOrderNumber\": null,\n            \"manufacturerPartNumber\": \"669Y7UT#ABA\",\n            \"partNumber\": \"6501961\",\n            \"estimatedToShip\": null,\n            \"quantity\": \"1\",\n            \"unitCost\": \"1274.13\",\n            \"extendedCost\": \"1274.13\",\n            \"parentLine\": \"1\",\n            \"invoices\": [\n              \"134492797\"\n            ],\n            \"serialNumbers\": [],\n            \"positionType\": \"SI\",\n            \"vendorName\": \"HP INC.\",\n            \"contractNumber\": null,\n            \"contractStartDate\": null,\n            \"contractEndDate\": null,\n            \"lineStatus\": null,\n            \"tracking\": [],\n            \"backordered\": false,\n            \"zeroDollarSKU\": false,\n            \"vendorSubline\": false,\n            \"multiLineKit\": false\n          }\n        ],\n        \"bundleItems\": null,\n        \"lineCount\": \"1\",\n        \"positionType\": \"SI\",\n        \"configId\": null,\n        \"serialNumbers\": [],\n        \"licenseKeys\": null,\n        \"hasMultipleInvoices\": false,\n        \"hasMultipleTrackingNumbers\": false,\n        \"hasMultipleCarrier\": false,\n        \"uniqueID\": null,\n        \"localManufacturer\": \"HP INC.\",\n        \"lineStatus\": \"Open\",\n        \"lineStatusCode\": null\n      },\n      {\n        \"lineNumber\": \"2\",\n        \"partNumber\": \"6501961\",\n        \"partDescription\": \"SBUY EliteBook 645 G9 5875U 16GB/512GB/AMD Radeon/14.0 inch\",\n        \"manufacturerPartNumber\": \"669Y7UT#ABA\",\n        \"customerPOLineNumber\": null,\n        \"customerPartNumber\": null,\n        \"customerPO\": \"PO1001WQWEQ\",\n        \"totalQuantity\": \"3\",\n        \"unitCost\": \"1274.13\",\n        \"extendedCost\": \"3822.39\",\n        \"bundleIndicator\": false,\n        \"nonReturnable\": true,\n        \"subLines\": [\n          {\n            \"displayLineNumber\": \"1\",\n            \"techDataPONumber\": null,\n            \"vendorSalesOrderNumber\": null,\n            \"manufacturerPartNumber\": \"669Y7UT#ABA\",\n            \"partNumber\": \"6501961\",\n            \"estimatedToShip\": null,\n            \"quantity\": \"3\",\n            \"unitCost\": \"1274.13\",\n            \"extendedCost\": \"3822.39\",\n            \"parentLine\": \"2\",\n            \"invoices\": [\n              \"134492797\"\n            ],\n            \"serialNumbers\": [],\n            \"positionType\": \"SI\",\n            \"vendorName\": \"HP INC.\",\n            \"contractNumber\": null,\n            \"contractStartDate\": null,\n            \"contractEndDate\": null,\n            \"lineStatus\": null,\n            \"tracking\": [],\n            \"backordered\": false,\n            \"zeroDollarSKU\": false,\n            \"vendorSubline\": false,\n            \"multiLineKit\": false\n          }\n        ],\n        \"bundleItems\": null,\n        \"lineCount\": \"1\",\n        \"positionType\": \"SI\",\n        \"configId\": null,\n        \"serialNumbers\": [],\n        \"licenseKeys\": null,\n        \"hasMultipleInvoices\": false,\n        \"hasMultipleTrackingNumbers\": false,\n        \"hasMultipleCarrier\": false,\n        \"uniqueID\": null,\n        \"localManufacturer\": \"HP INC.\",\n        \"lineStatus\": \"Open\",\n        \"lineStatusCode\": null\n      }\n    ],\n    \"uniqueID\": null,\n    \"errorMessage\": null\n  }\n]                    \n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/invoices/invoiceNo/{invoiceNo}/invoiceType/{invoiceType}" : {
+      "get" : {
+        "tags" : [ "Invoices" ],
+        "summary" : "Partner Invoice Query By InvoiceNo And InvoiceType",
+        "description" : "Retrieve invoice information using the invoice number and type.\n",
+        "operationId" : "INVOICES_GET_getInvoiceByInvoiceNoAndInvoiceType",
+        "parameters" : [ {
+          "name" : "invoiceNo",
+          "in" : "path",
+          "description" : "The invoice number.",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "invoiceType",
+          "in" : "path",
+          "description" : "The type of invoice (IV/PO/SO).",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response with invoice details.",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "invoice_details" : {
+                    "summary" : "Invoice details response",
+                    "value" : "[\n  {\n    \"shipComplete\": true,\n    \"currency\": \"string\",\n    \"paymentTerms\": \"string\",\n    \"status\": \"string\",\n    \"shipDate\": \"string\",\n    \"netFreight\": 0,\n    \"netInvoiceDollars\": 0,\n    \"taxInDocumentCurrency\": 0,\n    \"handlingCharge\": 0,\n    \"stateFee\": 0,\n    \"plantDescription\": \"string\",\n    \"actualFreight\": 0,\n    \"salesOrderNumber\": \"string\",\n    \"purchaseOrderNumber\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"invoiceDate\": \"string\",\n    \"invoiceDueDate\": \"string\",\n    \"totalInvoiceAmount\": 0,\n    \"invoiceBalance\": 0,\n    \"customerName\": \"string\",\n    \"customerNumber\": \"string\",\n    \"contactName\": \"string\",\n    \"endUserPO\": \"string\",\n    \"floorplan\": \"string\",\n    \"blindPackaging\": true,\n    \"soldToAddress\": {\n      \"name\": \"string\",\n      \"addressline1\": \"string\",\n      \"addressline2\": \"string\",\n      \"addressline3\": \"string\",\n      \"city\": \"string\",\n      \"stateOrProvince\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"phoneNumber\": \"string\",\n      \"email\": \"string\"\n    },\n    \"vendorShipTracking\": {\n      \"trackingList\": [\n        {\n          \"invoiceNumber\": \"string\",\n          \"salesOrderNumber\": \"string\",\n          \"lineNumber\": 0,\n          \"trackingNumber\": \"string\",\n          \"carrierDescription\": \"string\"\n        }\n      ],\n      \"serialList\": [\n        {\n          \"invoiceNumber\": \"string\",\n          \"partNumber\": \"string\",\n          \"manufacturerNumber\": \"string\",\n          \"partDescription\": \"string\",\n          \"serialNumber\": \"string\"\n        }\n      ]\n    },\n    \"lines\": [\n      {\n        \"quoteNumber\": \"string\",\n        \"invoiceNumber\": \"string\",\n        \"salesOrderNumber\": \"string\",\n        \"salesOrderLineNumber\": \"string\",\n        \"lineNumber\": \"string\",\n        \"shipToAddress\": {\n          \"name\": \"string\",\n          \"addressline1\": \"string\",\n          \"addressline2\": \"string\",\n          \"addressline3\": \"string\",\n          \"city\": \"string\",\n          \"stateOrProvince\": \"string\",\n          \"postalCode\": \"string\",\n          \"country\": \"string\",\n          \"phoneNumber\": \"string\",\n          \"email\": \"string\"\n        },\n        \"shippingMethodDescription\": \"string\",\n        \"status\": \"string\",\n        \"thirdPartyFreightAccount\": \"string\",\n        \"quantityShipped\": 0,\n        \"quantityReturned\": 0,\n        \"quantityOrdered\": 0,\n        \"quantityBackOrdered\": 0,\n        \"unitCost\": 0,\n        \"unitPrice\": 0,\n        \"extendedCost\": 0,\n        \"priceAfterDiscount\": 0,\n        \"uepos\": \"string\",\n        \"isDropShipOrVirtual\": true,\n        \"estimatedShipDate\": \"2022-09-01T00:22:33.069Z\",\n        \"deliveryNote\": \"string\",\n        \"deliveryNoteLine\": \"string\",\n        \"itemCategory\": \"string\",\n        \"kitItemNumber\": \"string\",\n        \"manufacturerPartNumber\": \"string\",\n        \"partDescription\": \"string\",\n        \"partNumber\": \"string\",\n        \"plant\": \"string\",\n        \"plantDescription\": \"string\"\n      }\n    ],\n    \"handlingUnits\": [\n      {\n        \"carrierTrackingNumber\": \"string\",\n        \"id\": \"string\",\n        \"tax\": 0,\n        \"total\": 0,\n        \"value\": 0,\n        \"weight\": 0,\n        \"quantity\": 0,\n        \"deliveryNote\": \"string\",\n        \"externalHandlingUnitNumber\": \"string\",\n        \"firstPartyShipper\": \"string\",\n        \"handlingCharge\": 0,\n        \"materialNumber\": \"string\",\n        \"miscDebitCredit\": 0,\n        \"netFreight\": 0,\n        \"handlingUnitLines\": [\n          {\n            \"number\": \"string\",\n            \"line\": \"string\",\n            \"partNumber\": \"string\",\n            \"serialNumber\": \"string\",\n            \"quantityShipped\": 0,\n            \"deliveryNote\": \"string\",\n            \"deliveryNoteLine\": \"string\",\n            \"invoiceTrackingList\": [\n              {\n                \"partNumber\": \"string\",\n                \"serialNumber\": \"string\",\n                \"serialNumberIndicator\": \"string\",\n                \"multiplePiece\": \"string\",\n                \"batchNumber\": \"string\",\n                \"deliveryLine\": \"string\",\n                \"deliveryNumber\": \"string\",\n                \"handlingUnitLine\": \"string\",\n                \"handlingUnitNumber\": \"string\"\n              }\n            ]\n          }\n        ]\n      }\n    ]\n  }\n]\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/SynnexXML/PriceAvailability" : {
+      "post" : {
+        "tags" : [ "Price & Availability" ],
+        "summary" : "PriceAvailability Query",
+        "description" : "Retrieve real-time pricing and inventory availability for products.\n\n## Features:\n- Query by TD SYNNEX SKU or Manufacturer Part Number\n- Support for multiple SKUs in a single request (recommended limit: 50)\n- Returns pricing based on customer contract\n- Shows availability across all TD SYNNEX warehouses\n- Special pricing support (Education, Government, Promotions)\n\n## Response Times:\n- 1 SKU: ~0.5-1 second\n- 5 SKUs: ~1-1.5 seconds\n- Response times may be longer during peak hours\n",
+        "operationId" : "PRICING_POST_legacySynnexXMLPriceAvailability",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "string"
+              },
+              "examples" : {
+                "single_sku" : {
+                  "summary" : "Query single SKU",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceRequest>\n    <skuList>\n        <synnexSKU>439866</synnexSKU>\n        <lineNumber>1</lineNumber>\n    </skuList>\n</priceRequest>\n"
+                },
+                "multiple_skus" : {
+                  "summary" : "Query multiple SKUs",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceRequest>\n    <skuList>\n        <synnexSKU>439866</synnexSKU>\n        <lineNumber>1</lineNumber>\n    </skuList>\n    <skuList>\n        <synnexSKU>108725</synnexSKU>\n        <lineNumber>2</lineNumber>\n    </skuList>\n</priceRequest>\n"
+                },
+                "by_manufacturer_part" : {
+                  "summary" : "Query by Manufacturer Part Number",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceRequest version=\"2.3\">\n    <skuList>\n        <mfgPN>108R00645</mfgPN>\n        <lineNumber>1</lineNumber>\n    </skuList>\n</priceRequest>\n"
+                },
+                "education_pricing" : {
+                  "summary" : "Request Education pricing",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceRequest>\n    <skuList>\n        <synnexSKU>439866</synnexSKU>\n        <lineNumber>1</lineNumber>\n        <priceType>Education</priceType>\n    </skuList>\n</priceRequest>\n"
+                },
+                "special_deal" : {
+                  "summary" : "Query with Special Deal Number",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceRequest>\n    <skuList>\n        <synnexSKU>256711</synnexSKU>\n        <lineNumber>1</lineNumber>\n        <specialDealNumber>2005B069</specialDealNumber>\n    </skuList>\n</priceRequest>\n"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "single_sku" : {
+                    "summary" : "Product found with availability",
+                    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceResponse>\n    <PriceAvailabilityList>\n        <synnexSKU>439866</synnexSKU>\n        <mfgPN>108R00645</mfgPN>\n        <mfgCode>13439</mfgCode>\n        <status>Active</status>\n        <description>IMAGING UNIT, PHASER 6300/6350</description>\n        <GlobalProductStatusCode>Active</GlobalProductStatusCode>\n        <price>322.97</price>\n        <totalQuantity>240</totalQuantity>\n        <AvailabilityByWarehouse>\n            <warehouseInfo>\n                <number>6</number>\n                <zipcode>60446</zipcode>\n                <city>Romeoville,IL</city>\n                <addr>1180 Remington Blvd</addr>\n            </warehouseInfo>\n            <qty>30</qty>\n        </AvailabilityByWarehouse>\n        <AvailabilityByWarehouse>\n            <warehouseInfo>\n                <number>7</number>\n                <zipcode>38672</zipcode>\n                <city>Southaven,MS</city>\n                <addr>455 Research Drive Suite 100</addr>\n            </warehouseInfo>\n            <qty>25</qty>\n        </AvailabilityByWarehouse>\n        <AvailabilityByWarehouse>\n            <warehouseInfo>\n                <number>12</number>\n                <zipcode>91710</zipcode>\n                <city>Chino,CA</city>\n                <addr>15065 Flight Ave</addr>\n            </warehouseInfo>\n            <qty>45</qty>\n        </AvailabilityByWarehouse>\n        <lineNumber>1</lineNumber>\n    </PriceAvailabilityList>\n</priceResponse>\n"
+                  },
+                  "not_found" : {
+                    "summary" : "Product not found",
+                    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceResponse>\n    <PriceAvailabilityList>\n        <synnexSKU>9999999</synnexSKU>\n        <status>Not found</status>\n        <lineNumber>1</lineNumber>\n    </PriceAvailabilityList>\n</priceResponse>\n"
+                  },
+                  "discontinued" : {
+                    "summary" : "Discontinued product",
+                    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceResponse>\n    <PriceAvailabilityList>\n        <synnexSKU>999999</synnexSKU>\n        <mfgPN>310-8931</mfgPN>\n        <mfgCode>1010</mfgCode>\n        <status>Discontinued</status>\n        <description>CLASSIC LEATHER CARRYCASE</description>\n        <GlobalProductStatusCode>Discontinued</GlobalProductStatusCode>\n        <price>0.00</price>\n        <totalQuantity>0</totalQuantity>\n        <lineNumber>1</lineNumber>\n    </PriceAvailabilityList>\n</priceResponse>\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/SynnexXML/Availability" : {
+      "post" : {
+        "tags" : [ "Price & Availability" ],
+        "summary" : "Availability Query",
+        "description" : "Retrieve inventory availability without pricing information.\n\n\nThis endpoint is optimized for faster response times when pricing is not needed.\n\nIt returns the same structure as the Price & Availability endpoint but with\nempty price fields.\n\n\n## Use Cases:\n\n- Inventory checks when pricing is already cached\n\n- Faster response times for availability-only queries\n\n- Reduced processing overhead\n",
+        "operationId" : "INVENTORY_POST_legacySynnexXMLAvailability",
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "*/*" : {
+              "schema" : {
+                "type" : "string"
+              },
+              "examples" : {
+                "single_sku" : {
+                  "summary" : "Check availability for single SKU",
+                  "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceRequest>\n    <skuList>\n        <synnexSKU>439866</synnexSKU>\n        <lineNumber>1</lineNumber>\n    </skuList>\n</priceRequest>\n"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Successful response",
+            "content" : {
+              "*/*" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : {
+                  "single_sku" : {
+                    "summary" : "Availability response (no pricing)",
+                    "value" : "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<priceResponse>\n    <PriceAvailabilityList>\n        <synnexSKU>439866</synnexSKU>\n        <mfgPN>108R00645</mfgPN>\n        <mfgCode>13439</mfgCode>\n        <status>Active</status>\n        <description>IMAGING UNIT, PHASER 6300/6350</description>\n        <GlobalProductStatusCode>Active</GlobalProductStatusCode>\n        <price></price>\n        <totalQuantity>240</totalQuantity>\n        <AvailabilityByWarehouse>\n            <warehouseInfo>\n                <number>6</number>\n                <zipcode>60446</zipcode>\n                <city>Romeoville,IL</city>\n                <addr>1180 Remington Blvd</addr>\n            </warehouseInfo>\n            <qty>30</qty>\n        </AvailabilityByWarehouse>\n        <lineNumber>1</lineNumber>\n    </PriceAvailabilityList>\n</priceResponse>\n"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT",
+        "description" : "OAuth2 Authentication. Example value '*Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...*'."
+      }
+    }
+  },
+  "security" : [ {
+    "bearerAuth" : [ ]
+  } ]
+}

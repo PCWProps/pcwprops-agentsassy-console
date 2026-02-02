@@ -1,0 +1,1214 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TD SYNNEX Partner API",
+    "description": "These APIs provide comprehensive access to product information, order management, and other business operations for seamless integration with your applications. With these services, you can perform price and availability queries, submit purchase orders, manage invoices, and more, all in real time.\n",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api-uat.us.tdsynnex.com",
+      "description": "Sandbox Server US"
+    },
+    {
+      "url": "https://api-uat.ca.tdsynnex.com",
+      "description": "Sandbox Server CA"
+    },
+    {
+      "url": "https://api.us.tdsynnex.com",
+      "description": "Production Server US"
+    },
+    {
+      "url": "https://api.ca.tdsynnex.com",
+      "description": "Production Server CA"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "OAuth2 authentication endpoints"
+    },
+    {
+      "name": "Quotes",
+      "description": "Endpoints related to quote queries"
+    },
+    {
+      "name": "Orders",
+      "description": "Endpoints related to order processing and queries"
+    },
+    {
+      "name": "Invoices",
+      "description": "Endpoints for accessing invoice information and reports"
+    }
+  ],
+  "paths": {
+    "/oauth2/v1/token": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Get Access Token",
+        "description": "Obtain an OAuth2 access token using client credentials.\n\nUse this token in the `Authorization` header for all subsequent API requests.\n\n**Token Lifetime:** 7200 seconds (2 hours)\n",
+        "operationId": "AUTH_POST_oauth2Token",
+        "servers": [
+          {
+            "url": "https://sso.us.tdsynnex.com",
+            "description": "Authorization Server"
+          }
+        ],
+        "security": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "grant_type",
+                  "client_id",
+                  "client_secret"
+                ],
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "enum": [
+                      "client_credentials"
+                    ],
+                    "description": "Must be 'client_credentials'",
+                    "example": "client_credentials"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "description": "Your client identifier",
+                    "example": "YOUR_CLIENT_ID"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "Your client secret (keep secure)",
+                    "example": "YOUR_CLIENT_SECRET"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Access token successfully generated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "description": "The access token to use in API requests",
+                      "example": "eyJ4NXQiOiJyNVFpNmlWenRtVjgxZ2JFcUpIVTdiTE..."
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "description": "Token type (always 'Bearer')",
+                      "example": "Bearer"
+                    },
+                    "expires_in": {
+                      "type": "integer",
+                      "description": "Token lifetime in seconds",
+                      "example": 7200
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Invalid parameters or client credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "invalid_client"
+                    },
+                    "error_description": {
+                      "type": "string",
+                      "example": "Client authentication failed"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/webservice/ltd/partner/order/{orderNo}/QUOTEID": {
+      "get": {
+        "tags": [
+          "Quotes"
+        ],
+        "summary": "Partner Quote Status Query by OrderNo",
+        "description": "Partner Quote Status Query by OrderNo.\n",
+        "operationId": "ORDERS_GET_webserviceLtdPartnerOrderInputTypeQUOTEID",
+        "parameters": [
+          {
+            "name": "orderNo",
+            "in": "path",
+            "description": "The order number to retrieve quote details.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
+                },
+                "examples": {
+                  "quote_details": {
+                    "summary": "Quote details response",
+                    "value": [
+                      {
+                        "orderNumber": "123456789",
+                        "invoiceNumber": "INV-123456",
+                        "purchaseOrderNumber": "PO-TEST-001",
+                        "salesOrderNumber": "SO-123456",
+                        "orderStatus": "Open",
+                        "orderStatusCode": null,
+                        "orderPlacedDate": "2022-11-02T00:00:00Z",
+                        "total": "500.00",
+                        "tax": "0.00",
+                        "freight": "25.00",
+                        "otherFees": "0.00",
+                        "resellerContactName": null,
+                        "shipTo": {
+                          "country": "US",
+                          "name": "John Doe",
+                          "phoneNumber": "555-0123",
+                          "name2": "SYNNEX DEMO ACCT",
+                          "postalCode": "12345",
+                          "city": "SAMPLE CITY",
+                          "email": "test@example.com",
+                          "addressline3": null,
+                          "addressline1": "123 Sample Street",
+                          "stateOrProvince": "CA",
+                          "addressline2": "Suite 100"
+                        },
+                        "endUser": {
+                          "country": null,
+                          "name": "Jane Smith",
+                          "phoneNumber": "555-0199",
+                          "postalCode": "67890",
+                          "city": "EXAMPLE CITY",
+                          "email": "enduser@example.com",
+                          "addressline3": null,
+                          "addressline1": "456 Example Ave",
+                          "stateOrProvince": "NY",
+                          "addressline2": "Apt 200"
+                        },
+                        "lines": [
+                          {
+                            "lineNumber": "1",
+                            "partNumber": "56789",
+                            "partDescription": "Sample Laptop Product Description",
+                            "manufacturerPartNumber": "MFG-SAMPLE",
+                            "customerPOLineNumber": null,
+                            "customerPartNumber": null,
+                            "customerPO": "PO-TEST-001",
+                            "totalQuantity": "1",
+                            "unitCost": "100.00",
+                            "extendedCost": "100.00",
+                            "bundleIndicator": false,
+                            "nonReturnable": true,
+                            "subLines": [
+                              {
+                                "displayLineNumber": "1",
+                                "techDataPONumber": null,
+                                "vendorSalesOrderNumber": null,
+                                "manufacturerPartNumber": "MFG-SAMPLE",
+                                "partNumber": "56789",
+                                "estimatedToShip": null,
+                                "quantity": "1",
+                                "unitCost": "100.00",
+                                "extendedCost": "100.00",
+                                "parentLine": "1",
+                                "invoices": [
+                                  "INV-123456"
+                                ],
+                                "serialNumbers": [],
+                                "positionType": "SI",
+                                "vendorName": "HP INC.",
+                                "contractNumber": null,
+                                "contractStartDate": null,
+                                "contractEndDate": null,
+                                "lineStatus": null,
+                                "tracking": [],
+                                "backordered": false,
+                                "zeroDollarSKU": false,
+                                "vendorSubline": false,
+                                "multiLineKit": false
+                              }
+                            ],
+                            "bundleItems": null,
+                            "lineCount": "1",
+                            "positionType": "SI",
+                            "configId": null,
+                            "serialNumbers": [],
+                            "licenseKeys": null,
+                            "hasMultipleInvoices": false,
+                            "hasMultipleTrackingNumbers": false,
+                            "hasMultipleCarrier": false,
+                            "uniqueID": null,
+                            "localManufacturer": "HP INC.",
+                            "lineStatus": "Open",
+                            "lineStatusCode": null
+                          },
+                          {
+                            "lineNumber": "2",
+                            "partNumber": "56789",
+                            "partDescription": "Sample Laptop Product Description",
+                            "manufacturerPartNumber": "MFG-SAMPLE",
+                            "customerPOLineNumber": null,
+                            "customerPartNumber": null,
+                            "customerPO": "PO-TEST-001",
+                            "totalQuantity": "3",
+                            "unitCost": "100.00",
+                            "extendedCost": "300.00",
+                            "bundleIndicator": false,
+                            "nonReturnable": true,
+                            "subLines": [
+                              {
+                                "displayLineNumber": "1",
+                                "techDataPONumber": null,
+                                "vendorSalesOrderNumber": null,
+                                "manufacturerPartNumber": "MFG-SAMPLE",
+                                "partNumber": "56789",
+                                "estimatedToShip": null,
+                                "quantity": "3",
+                                "unitCost": "100.00",
+                                "extendedCost": "300.00",
+                                "parentLine": "2",
+                                "invoices": [
+                                  "INV-123456"
+                                ],
+                                "serialNumbers": [],
+                                "positionType": "SI",
+                                "vendorName": "HP INC.",
+                                "contractNumber": null,
+                                "contractStartDate": null,
+                                "contractEndDate": null,
+                                "lineStatus": null,
+                                "tracking": [],
+                                "backordered": false,
+                                "zeroDollarSKU": false,
+                                "vendorSubline": false,
+                                "multiLineKit": false
+                              }
+                            ],
+                            "bundleItems": null,
+                            "lineCount": "1",
+                            "positionType": "SI",
+                            "configId": null,
+                            "serialNumbers": [],
+                            "licenseKeys": null,
+                            "hasMultipleInvoices": false,
+                            "hasMultipleTrackingNumbers": false,
+                            "hasMultipleCarrier": false,
+                            "uniqueID": null,
+                            "localManufacturer": "HP INC.",
+                            "lineStatus": "Open",
+                            "lineStatusCode": null
+                          }
+                        ],
+                        "uniqueID": null,
+                        "errorMessage": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/orderNo/{orderNo}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Partner Order Info Query By OrderNo",
+        "description": "Retrieve partner order details using the specified order number.\n",
+        "operationId": "ORDERS_GET_getOrderByOrderNo",
+        "parameters": [
+          {
+            "name": "orderNo",
+            "in": "path",
+            "description": "The order number to query.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with order details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
+                },
+                "examples": {
+                  "order_details": {
+                    "summary": "Order details response",
+                    "value": [
+                      {
+                        "orderNumber": "134492797",
+                        "invoiceNumber": "XXXXXXX",
+                        "purchaseOrderNumber": "POXXXXXX",
+                        "salesOrderNumber": "XXXXXXX",
+                        "orderStatus": "Open",
+                        "orderStatusCode": null,
+                        "orderPlacedDate": "2022-11-02T00:00:00Z",
+                        "total": "500.00",
+                        "tax": "0.00",
+                        "freight": "25.00",
+                        "otherFees": "0.00",
+                        "resellerContactName": null,
+                        "shipTo": {
+                          "country": "US",
+                          "name": "John Doe",
+                          "phoneNumber": "XXXXXXXXXX",
+                          "name2": "DEMO ACCOUNT",
+                          "postalCode": "XXXXX",
+                          "city": "CityName",
+                          "email": "example@example.com",
+                          "addressline3": null,
+                          "addressline1": "123 Main St.",
+                          "stateOrProvince": "ST",
+                          "addressline2": "Suite 100"
+                        },
+                        "endUser": {
+                          "country": null,
+                          "name": "Jane Doe",
+                          "phoneNumber": " ",
+                          "postalCode": "XXXXX",
+                          "city": "CityName",
+                          "email": " ",
+                          "addressline3": null,
+                          "addressline1": "test",
+                          "stateOrProvince": "ST",
+                          "addressline2": " "
+                        },
+                        "lines": [
+                          {
+                            "lineNumber": "1",
+                            "partNumber": "XXXXXXX",
+                            "partDescription": "Product Description 1",
+                            "manufacturerPartNumber": "MFG-SAMPLE",
+                            "customerPOLineNumber": null,
+                            "customerPartNumber": null,
+                            "customerPO": "POXXXXXX",
+                            "totalQuantity": "1",
+                            "unitCost": "100.00",
+                            "extendedCost": "100.00",
+                            "bundleIndicator": false,
+                            "nonReturnable": true,
+                            "subLines": [
+                              {
+                                "displayLineNumber": "1",
+                                "techDataPONumber": null,
+                                "vendorSalesOrderNumber": null,
+                                "manufacturerPartNumber": "MFG-SAMPLE",
+                                "partNumber": "XXXXXXX",
+                                "estimatedToShip": null,
+                                "quantity": "1",
+                                "unitCost": "100.00",
+                                "extendedCost": "100.00",
+                                "parentLine": "1",
+                                "invoices": [
+                                  "XXXXXXX"
+                                ],
+                                "serialNumbers": [],
+                                "positionType": "SI",
+                                "vendorName": "Vendor Name",
+                                "contractNumber": null,
+                                "contractStartDate": null,
+                                "contractEndDate": null,
+                                "lineStatus": null,
+                                "tracking": [],
+                                "backordered": false,
+                                "zeroDollarSKU": false,
+                                "vendorSubline": false,
+                                "multiLineKit": false
+                              }
+                            ],
+                            "bundleItems": null,
+                            "lineCount": "1",
+                            "positionType": "SI",
+                            "configId": null,
+                            "serialNumbers": [],
+                            "licenseKeys": null,
+                            "hasMultipleInvoices": false,
+                            "hasMultipleTrackingNumbers": false,
+                            "hasMultipleCarrier": false,
+                            "uniqueID": null,
+                            "localManufacturer": "Vendor Name",
+                            "lineStatus": "Open",
+                            "lineStatusCode": null
+                          },
+                          {
+                            "lineNumber": "2",
+                            "partNumber": "XXXXXXX",
+                            "partDescription": "Product Description 2",
+                            "manufacturerPartNumber": "MFG-SAMPLE",
+                            "customerPOLineNumber": null,
+                            "customerPartNumber": null,
+                            "customerPO": "POXXXXXX",
+                            "totalQuantity": "3",
+                            "unitCost": "100.00",
+                            "extendedCost": "300.00",
+                            "bundleIndicator": false,
+                            "nonReturnable": true,
+                            "subLines": [
+                              {
+                                "displayLineNumber": "1",
+                                "techDataPONumber": null,
+                                "vendorSalesOrderNumber": null,
+                                "manufacturerPartNumber": "MFG-SAMPLE",
+                                "partNumber": "XXXXXXX",
+                                "estimatedToShip": null,
+                                "quantity": "3",
+                                "unitCost": "100.00",
+                                "extendedCost": "300.00",
+                                "parentLine": "2",
+                                "invoices": [
+                                  "XXXXXXX"
+                                ],
+                                "serialNumbers": [],
+                                "positionType": "SI",
+                                "vendorName": "Vendor Name",
+                                "contractNumber": null,
+                                "contractStartDate": null,
+                                "contractEndDate": null,
+                                "lineStatus": null,
+                                "tracking": [],
+                                "backordered": false,
+                                "zeroDollarSKU": false,
+                                "vendorSubline": false,
+                                "multiLineKit": false
+                              }
+                            ],
+                            "bundleItems": null,
+                            "lineCount": "1",
+                            "positionType": "SI",
+                            "configId": null,
+                            "serialNumbers": [],
+                            "licenseKeys": null,
+                            "hasMultipleInvoices": false,
+                            "hasMultipleTrackingNumbers": false,
+                            "hasMultipleCarrier": false,
+                            "uniqueID": null,
+                            "localManufacturer": "Vendor Name",
+                            "lineStatus": "Open",
+                            "lineStatusCode": null
+                          }
+                        ],
+                        "uniqueID": null,
+                        "errorMessage": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/orderNo/{orderNo}/orderType/{orderType}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Partner Order Info Query By OrderNo And OrderType",
+        "description": "Retrieve partner order details using both order number and order type.\n",
+        "operationId": "ORDERS_GET_getOrderByOrderNoAndOrderType",
+        "parameters": [
+          {
+            "name": "orderNo",
+            "in": "path",
+            "description": "The order number.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderType",
+            "in": "path",
+            "description": "The type of order (SO or PO).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with order details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
+                },
+                "examples": {
+                  "order_details": {
+                    "summary": "Order details response",
+                    "value": [
+                      {
+                        "orderNumber": "134492797",
+                        "invoiceNumber": "XXXXXXX",
+                        "purchaseOrderNumber": "POXXXXXX",
+                        "salesOrderNumber": "XXXXXXX",
+                        "orderStatus": "Open",
+                        "orderStatusCode": null,
+                        "orderPlacedDate": "2022-11-02T00:00:00Z",
+                        "total": "500.00",
+                        "tax": "0.00",
+                        "freight": "25.00",
+                        "otherFees": "0.00",
+                        "resellerContactName": null,
+                        "shipTo": {
+                          "country": "US",
+                          "name": "John Doe",
+                          "phoneNumber": "XXXXXXXXXX",
+                          "name2": "DEMO ACCOUNT",
+                          "postalCode": "XXXXX",
+                          "city": "CityName",
+                          "email": "example@example.com",
+                          "addressline3": null,
+                          "addressline1": "123 Main St.",
+                          "stateOrProvince": "ST",
+                          "addressline2": "Suite 100"
+                        },
+                        "endUser": {
+                          "country": null,
+                          "name": "Jane Doe",
+                          "phoneNumber": " ",
+                          "postalCode": "XXXXX",
+                          "city": "CityName",
+                          "email": " ",
+                          "addressline3": null,
+                          "addressline1": "test",
+                          "stateOrProvince": "ST",
+                          "addressline2": " "
+                        },
+                        "lines": [
+                          {
+                            "lineNumber": "1",
+                            "partNumber": "XXXXXXX",
+                            "partDescription": "Product Description 1",
+                            "manufacturerPartNumber": "MFG-SAMPLE",
+                            "customerPOLineNumber": null,
+                            "customerPartNumber": null,
+                            "customerPO": "POXXXXXX",
+                            "totalQuantity": "1",
+                            "unitCost": "100.00",
+                            "extendedCost": "100.00",
+                            "bundleIndicator": false,
+                            "nonReturnable": true,
+                            "subLines": [
+                              {
+                                "displayLineNumber": "1",
+                                "techDataPONumber": null,
+                                "vendorSalesOrderNumber": null,
+                                "manufacturerPartNumber": "MFG-SAMPLE",
+                                "partNumber": "XXXXXXX",
+                                "estimatedToShip": null,
+                                "quantity": "1",
+                                "unitCost": "100.00",
+                                "extendedCost": "100.00",
+                                "parentLine": "1",
+                                "invoices": [
+                                  "XXXXXXX"
+                                ],
+                                "serialNumbers": [],
+                                "positionType": "SI",
+                                "vendorName": "Vendor Name",
+                                "contractNumber": null,
+                                "contractStartDate": null,
+                                "contractEndDate": null,
+                                "lineStatus": null,
+                                "tracking": [],
+                                "backordered": false,
+                                "zeroDollarSKU": false,
+                                "vendorSubline": false,
+                                "multiLineKit": false
+                              }
+                            ],
+                            "bundleItems": null,
+                            "lineCount": "1",
+                            "positionType": "SI",
+                            "configId": null,
+                            "serialNumbers": [],
+                            "licenseKeys": null,
+                            "hasMultipleInvoices": false,
+                            "hasMultipleTrackingNumbers": false,
+                            "hasMultipleCarrier": false,
+                            "uniqueID": null,
+                            "localManufacturer": "Vendor Name",
+                            "lineStatus": "Open",
+                            "lineStatusCode": null
+                          },
+                          {
+                            "lineNumber": "2",
+                            "partNumber": "XXXXXXX",
+                            "partDescription": "Product Description 2",
+                            "manufacturerPartNumber": "MFG-SAMPLE",
+                            "customerPOLineNumber": null,
+                            "customerPartNumber": null,
+                            "customerPO": "POXXXXXX",
+                            "totalQuantity": "3",
+                            "unitCost": "100.00",
+                            "extendedCost": "300.00",
+                            "bundleIndicator": false,
+                            "nonReturnable": true,
+                            "subLines": [
+                              {
+                                "displayLineNumber": "1",
+                                "techDataPONumber": null,
+                                "vendorSalesOrderNumber": null,
+                                "manufacturerPartNumber": "MFG-SAMPLE",
+                                "partNumber": "XXXXXXX",
+                                "estimatedToShip": null,
+                                "quantity": "3",
+                                "unitCost": "100.00",
+                                "extendedCost": "300.00",
+                                "parentLine": "2",
+                                "invoices": [
+                                  "XXXXXXX"
+                                ],
+                                "serialNumbers": [],
+                                "positionType": "SI",
+                                "vendorName": "Vendor Name",
+                                "contractNumber": null,
+                                "contractStartDate": null,
+                                "contractEndDate": null,
+                                "lineStatus": null,
+                                "tracking": [],
+                                "backordered": false,
+                                "zeroDollarSKU": false,
+                                "vendorSubline": false,
+                                "multiLineKit": false
+                              }
+                            ],
+                            "bundleItems": null,
+                            "lineCount": "1",
+                            "positionType": "SI",
+                            "configId": null,
+                            "serialNumbers": [],
+                            "licenseKeys": null,
+                            "hasMultipleInvoices": false,
+                            "hasMultipleTrackingNumbers": false,
+                            "hasMultipleCarrier": false,
+                            "uniqueID": null,
+                            "localManufacturer": "Vendor Name",
+                            "lineStatus": "Open",
+                            "lineStatusCode": null
+                          }
+                        ],
+                        "uniqueID": null,
+                        "errorMessage": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/orders/shipment/details/orderNo/{orderNo}": {
+      "get": {
+        "tags": [
+          "Orders"
+        ],
+        "summary": "Partner Order Shipment Query By OrderNo",
+        "description": "Partner Order Shipment Query By OrderNo.\n",
+        "operationId": "ORDERS_GET_getOrderShipmentByOrderNo",
+        "parameters": [
+          {
+            "name": "orderNo",
+            "in": "path",
+            "description": "The order number to retrieve shipment details.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "shipment_details": {
+                    "summary": "Shipment details response",
+                    "value": {
+                      "orderNumber": "SO-987654",
+                      "purchaseOrder": "PO-TEST-002",
+                      "orderStatus": "Open",
+                      "orderStatusCode": "1",
+                      "uniqueID": null,
+                      "lines": [
+                        {
+                          "displayLineNumber": "1",
+                          "lineNumber": "1",
+                          "partNumber": "67890",
+                          "manufacturerPartNumber": "MFG-XYZ789",
+                          "configStatus": null,
+                          "totalQuantity": "1",
+                          "hasMultipleTrackingNumbers": false,
+                          "hasMultipleCarrier": false,
+                          "lineStatusCode": "1",
+                          "lineStatus": "Open",
+                          "uniqueID": null,
+                          "subLines": [
+                            {
+                              "displayLineNumber": "1",
+                              "techDataPONumber": null,
+                              "vendorSalesOrderNumber": null,
+                              "quantity": "1",
+                              "shipDate": null,
+                              "warehouse": "Warehouse C",
+                              "deliveryNumber": null,
+                              "lineStatus": "Open",
+                              "tracking": []
+                            }
+                          ]
+                        }
+                      ],
+                      "errorMessage": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    },
+    "/api/v1/invoices/invoiceNo/{invoiceNo}/invoiceType/{invoiceType}": {
+      "get": {
+        "tags": [
+          "Invoices"
+        ],
+        "summary": "Partner Invoice Query By InvoiceNo And InvoiceType",
+        "description": "Retrieve invoice information using the invoice number and type.\n",
+        "operationId": "INVOICES_GET_getInvoiceByInvoiceNoAndInvoiceType",
+        "parameters": [
+          {
+            "name": "invoiceNo",
+            "in": "path",
+            "description": "The invoice number.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "invoiceType",
+            "in": "path",
+            "description": "The type of invoice (IV/PO/SO).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with invoice details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array"
+                },
+                "examples": {
+                  "invoice_details": {
+                    "summary": "Invoice details response",
+                    "value": [
+                      {
+                        "shipComplete": true,
+                        "currency": "string",
+                        "paymentTerms": "string",
+                        "status": "string",
+                        "shipDate": "string",
+                        "netFreight": 0,
+                        "netInvoiceDollars": 0,
+                        "taxInDocumentCurrency": 0,
+                        "handlingCharge": 0,
+                        "stateFee": 0,
+                        "plantDescription": "string",
+                        "actualFreight": 0,
+                        "salesOrderNumber": "string",
+                        "purchaseOrderNumber": "string",
+                        "invoiceNumber": "string",
+                        "invoiceDate": "string",
+                        "invoiceDueDate": "string",
+                        "totalInvoiceAmount": 0,
+                        "invoiceBalance": 0,
+                        "customerName": "string",
+                        "customerNumber": "string",
+                        "contactName": "string",
+                        "endUserPO": "string",
+                        "floorplan": "string",
+                        "blindPackaging": true,
+                        "soldToAddress": {
+                          "name": "string",
+                          "addressline1": "string",
+                          "addressline2": "string",
+                          "addressline3": "string",
+                          "city": "string",
+                          "stateOrProvince": "string",
+                          "postalCode": "string",
+                          "country": "string",
+                          "phoneNumber": "string",
+                          "email": "string"
+                        },
+                        "vendorShipTracking": {
+                          "trackingList": [
+                            {
+                              "invoiceNumber": "string",
+                              "salesOrderNumber": "string",
+                              "lineNumber": 0,
+                              "trackingNumber": "string",
+                              "carrierDescription": "string"
+                            }
+                          ],
+                          "serialList": [
+                            {
+                              "invoiceNumber": "string",
+                              "partNumber": "string",
+                              "manufacturerNumber": "string",
+                              "partDescription": "string",
+                              "serialNumber": "string"
+                            }
+                          ]
+                        },
+                        "lines": [
+                          {
+                            "quoteNumber": "string",
+                            "invoiceNumber": "string",
+                            "salesOrderNumber": "string",
+                            "salesOrderLineNumber": "string",
+                            "lineNumber": "string",
+                            "shipToAddress": {
+                              "name": "string",
+                              "addressline1": "string",
+                              "addressline2": "string",
+                              "addressline3": "string",
+                              "city": "string",
+                              "stateOrProvince": "string",
+                              "postalCode": "string",
+                              "country": "string",
+                              "phoneNumber": "string",
+                              "email": "string"
+                            },
+                            "shippingMethodDescription": "string",
+                            "status": "string",
+                            "thirdPartyFreightAccount": "string",
+                            "quantityShipped": 0,
+                            "quantityReturned": 0,
+                            "quantityOrdered": 0,
+                            "quantityBackOrdered": 0,
+                            "unitCost": 0,
+                            "unitPrice": 0,
+                            "extendedCost": 0,
+                            "priceAfterDiscount": 0,
+                            "uepos": "string",
+                            "isDropShipOrVirtual": true,
+                            "estimatedShipDate": "2022-09-01T00:22:33.069Z",
+                            "deliveryNote": "string",
+                            "deliveryNoteLine": "string",
+                            "itemCategory": "string",
+                            "kitItemNumber": "string",
+                            "manufacturerPartNumber": "string",
+                            "partDescription": "string",
+                            "partNumber": "string",
+                            "plant": "string",
+                            "plantDescription": "string"
+                          }
+                        ],
+                        "handlingUnits": [
+                          {
+                            "carrierTrackingNumber": "string",
+                            "id": "string",
+                            "tax": 0,
+                            "total": 0,
+                            "value": 0,
+                            "weight": 0,
+                            "quantity": 0,
+                            "deliveryNote": "string",
+                            "externalHandlingUnitNumber": "string",
+                            "firstPartyShipper": "string",
+                            "handlingCharge": 0,
+                            "materialNumber": "string",
+                            "miscDebitCredit": 0,
+                            "netFreight": 0,
+                            "handlingUnitLines": [
+                              {
+                                "number": "string",
+                                "line": "string",
+                                "partNumber": "string",
+                                "serialNumber": "string",
+                                "quantityShipped": 0,
+                                "deliveryNote": "string",
+                                "deliveryNoteLine": "string",
+                                "invoiceTrackingList": [
+                                  {
+                                    "partNumber": "string",
+                                    "serialNumber": "string",
+                                    "serialNumberIndicator": "string",
+                                    "multiplePiece": "string",
+                                    "batchNumber": "string",
+                                    "deliveryLine": "string",
+                                    "deliveryNumber": "string",
+                                    "handlingUnitLine": "string",
+                                    "handlingUnitNumber": "string"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "429": {
+            "$ref": "#/components/responses/TooManyRequests"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "BadRequest": {
+        "description": "Bad Request - Invalid input parameters or malformed request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requestId": {
+                  "type": "string",
+                  "description": "Unique identifier for the request",
+                  "example": "01kbf362h2w6w7w64yd1q0nvdj"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "errorCode": {
+                      "type": "string",
+                      "description": "Error code identifier",
+                      "example": "invalid_parameter"
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Detailed error message",
+                      "example": "The parameter xxx is invalid"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized - Invalid or missing authentication credentials",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requestId": {
+                  "type": "string",
+                  "description": "Unique identifier for the request",
+                  "example": "01kbf362h2w6w7w64yd1q0nvdj"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "errorCode": {
+                      "type": "string",
+                      "description": "Error code identifier",
+                      "example": "unauthorized"
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Detailed error message",
+                      "example": "Invalid or expired authentication token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "TooManyRequests": {
+        "description": "Too Many Requests - Rate limit exceeded",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requestId": {
+                  "type": "string",
+                  "description": "Unique identifier for the request",
+                  "example": "01kbf362h2w6w7w64yd1q0nvdj"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "errorCode": {
+                      "type": "string",
+                      "description": "Error code identifier",
+                      "example": "API_RATE_LIMIT"
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Detailed error message",
+                      "example": "Too Many Requests"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal Server Error - An unexpected error occurred on the server",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "requestId": {
+                  "type": "string",
+                  "description": "Unique identifier for the request",
+                  "example": "01kbf362h2w6w7w64yd1q0nvdj"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "errorCode": {
+                      "type": "string",
+                      "description": "Error code identifier",
+                      "example": "E001"
+                    },
+                    "errorMessage": {
+                      "type": "string",
+                      "description": "Detailed error message",
+                      "example": "An unexpected error occurred"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "OAuth2 Client Credentials authentication.\n\n1. Obtain access token from: https://sso.us.tdsynnex.com/oauth2/v1/token\n2. Include in Authorization header as: Bearer {access_token}\n3. Token expires in 7200 seconds (2 hours)\n\nExample: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...\n"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}

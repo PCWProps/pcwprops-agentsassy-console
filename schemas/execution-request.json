@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "execution-request",
+  "type": "object",
+  "properties": {
+    "schema": { "type": "object" },
+    "requestId": { "type": "string" },
+    "routing": { "type": "object" },
+    "auth": { "type": "object" },
+    "payload": { "type": "object" },
+    "timeoutMs": { "type": "number" }
+  },
+  "required": ["requestId", "routing", "auth"]
+}

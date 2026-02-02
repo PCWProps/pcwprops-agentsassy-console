@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "policy-validation",
+  "type": "object",
+  "properties": {
+    "schema": { "type": "object" },
+    "requestId": { "type": "string" },
+    "status": { "type": "string" },
+    "policyRef": { "type": "string" },
+    "violations": { "type": "array", "items": { "type": "object" } },
+    "evaluatedAt": { "type": "string" }
+  },
+  "required": ["requestId", "status", "policyRef"]
+}

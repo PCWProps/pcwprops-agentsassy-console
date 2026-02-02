@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "auth-context",
+  "type": "object",
+  "properties": {
+    "schema": { "type": "object" },
+    "subjectId": { "type": "string" },
+    "subjectType": { "type": "string" },
+    "tenantId": { "type": "string" },
+    "sessionId": { "type": "string" },
+    "authLevel": { "type": "string" },
+    "roles": { "type": "array", "items": { "type": "string" } },
+    "scopes": { "type": "array", "items": { "type": "string" } },
+    "issuedAt": { "type": "string" },
+    "expiresAt": { "type": "string" }
+  },
+  "required": ["subjectId", "subjectType", "tenantId", "sessionId", "authLevel"]
+}

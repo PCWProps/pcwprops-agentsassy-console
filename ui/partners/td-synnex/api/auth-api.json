@@ -1,0 +1,135 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "OAuth2 Authentication",
+    "description" : "Utilize the TD SYNNEX OAuth2 token endpoint to facilitate the authentication process for your application and ensure the authentication of API requests.\n\nBy leveraging this endpoint, your application can seamlessly authenticate API requests, thereby enhancing security and ensuring compliance with access control measures.\n\n- Click [Download JSON Schema](/api-center/public/api/project/auth-api/swagger/prod/download) to import it into your API management tool (e.g., Postman).\n\n> Note: Access tokens obtained with a sandbox client secret cannot be used on production API servers and\n  vice versa. Ensure you use the correct client secret for the environment you are working in.",
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "https://sso.us.tdsynnex.com",
+    "description" : "Authorization Server"
+  } ],
+  "tags" : [ {
+    "name" : "Token"
+  } ],
+  "paths" : {
+    "/oauth2/v1/token" : {
+      "post" : {
+        "tags" : [ "Token" ],
+        "summary" : "Request an access token",
+        "description" : "Use this endpoint to request an access token to authorize your application to access TD SYNNEX resources. Pass this token in subsequent TD SYNNEX API requests.",
+        "operationId" : "requestAccessToken",
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "description" : "Indicates the media type of the resource. Example: application/x-www-form-urlencoded.",
+          "required" : true,
+          "schema" : {
+            "type" : "string",
+            "example" : "application/x-www-form-urlencoded"
+          }
+        } ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/x-www-form-urlencoded" : {
+              "schema" : {
+                "type" : "object",
+                "required" : [ "client_id", "client_secret", "grant_type" ],
+                "properties" : {
+                  "grant_type" : {
+                    "type" : "string",
+                    "description" : "Valid value: client_credentials.",
+                    "example" : "client_credentials"
+                  },
+                  "client_id" : {
+                    "type" : "string",
+                    "description" : "Client ID."
+                  },
+                  "client_secret" : {
+                    "type" : "string",
+                    "description" : "Client secret."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "access_token" : {
+                      "type" : "string",
+                      "description" : "This is a signed token used to authenticate your API requests. Use it in the authorization header of your API requests. Example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+                      "example" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    },
+                    "token_type" : {
+                      "type" : "string",
+                      "description" : "Token type.",
+                      "example" : "Bearer"
+                    },
+                    "expires_in" : {
+                      "type" : "integer",
+                      "description" : "Token expiration time in seconds. Standard is two hours. Example: 7200",
+                      "example" : 7200
+                    },
+                    "scope" : {
+                      "type" : "string",
+                      "description" : "Scope of authorization. Example: userinfo",
+                      "example" : "userinfo"
+                    }
+                  }
+                },
+                "examples" : {
+                  "Success" : {
+                    "value" : {
+                      "access_token" : "eyJ4NXQiOiJyNVFpNmlWenRtVjgxZ2JFcUpIVTdiTEkyUm89I...",
+                      "token_type" : "Bearer",
+                      "scope" : "userinfo",
+                      "expires_in" : 7200
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400" : {
+            "description" : "Bad Request",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "object",
+                  "properties" : {
+                    "error" : {
+                      "type" : "string",
+                      "description" : "Error code.",
+                      "example" : "invalid_client"
+                    },
+                    "error_description" : {
+                      "type" : "string",
+                      "description" : "Error description.",
+                      "example" : "client_secret required"
+                    }
+                  }
+                },
+                "examples" : {
+                  "Bad Request" : {
+                    "value" : {
+                      "error" : "invalid_client",
+                      "error_description" : "client_secret required"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

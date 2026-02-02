@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "schema-descriptor",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "owner": { "type": "string" },
+    "plane": { "type": "string" },
+    "compatibility": { "type": "string" },
+    "updatedAt": { "type": "string" }
+  },
+  "required": ["name", "version", "owner", "plane", "compatibility", "updatedAt"]
+}

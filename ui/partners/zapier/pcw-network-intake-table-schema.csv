@@ -1,0 +1,29 @@
+Column Name,Field Type,Values / Notes
+Client Name,Single Line Text,Required
+Email,Email,Required
+Phone,Phone,Optional
+Lead Source,Dropdown,Website|Referral|Instagram|Builder|Realtor|Other
+Property Type,Dropdown,Residential|Commercial
+City,Single Line Text,
+Internet Provider,Dropdown,AT&T|Comcast|Spectrum|Verizon|Starlink|Other
+Connection Type,Dropdown,Fiber|Cable|DSL|Fixed Wireless|Unknown
+Download Speed,Dropdown,<100 Mbps|100–300 Mbps|300–500 Mbps|500–1000 Mbps|1 Gbps+
+Upload Speed,Dropdown,<20 Mbps|20–50 Mbps|50–100 Mbps|100–500 Mbps|500 Mbps+
+ISP Modem Provided,Dropdown,Yes|No|Unsure
+Router Brand,Dropdown,ISP|UniFi|Eero|Netgear|ASUS|Other
+Router Model,Single Line Text,
+Switches Present,Dropdown,None|Unmanaged|Managed
+Wireless Setup,Dropdown,Router Only|1–2 Access Points|3+ Access Points
+Structured Wiring,Dropdown,Yes|No|Unsure
+Network Issues,Checkbox,Poor Coverage|Slow Speeds|Dropouts|Device Overload|Security Concerns|None
+Square Footage,Dropdown,"<1,000 sq ft|1–2k|2–4k|4–6k|6k+"
+Floors,Dropdown,1|2|3+
+Estimated Devices,Dropdown,<10|10–30|30–60|60+
+Top Priority,Dropdown,Speed|Coverage|Stability|Security
+New Hardware Allowed,Dropdown,Yes – Recommend|Yes – Preferred Brands|No – Reuse Existing
+Preferred Brands,Multi-Line Text,Conditional
+Add-On Services,Checkbox,Guest Network|VLAN Segmentation|IoT Isolation|VPN / Remote Access|Content Filtering|Managed Network
+Qualification Score,Number,Zap Calculated
+Qualification Status,Dropdown,Proposal-Ready|Discovery Required
+Assigned Package,Dropdown,Standard|Advanced|Managed
+Internal Notes,Multi-Line Text,Internal Only

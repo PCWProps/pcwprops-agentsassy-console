@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "capability",
+  "type": "object",
+  "properties": {
+    "schema": { "type": "object" },
+    "capabilityId": { "type": "string" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "allowedPlanes": { "type": "array", "items": { "type": "string" } },
+    "constraints": { "type": "object" }
+  },
+  "required": ["capabilityId", "name"]
+}

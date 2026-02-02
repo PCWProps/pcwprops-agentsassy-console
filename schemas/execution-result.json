@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "execution-result",
+  "type": "object",
+  "properties": {
+    "schema": { "type": "object" },
+    "requestId": { "type": "string" },
+    "status": { "type": "string" },
+    "output": { "type": "object" },
+    "error": { "type": "object" },
+    "completedAt": { "type": "string" }
+  },
+  "required": ["requestId", "status"]
+}
