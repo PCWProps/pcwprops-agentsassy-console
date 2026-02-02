@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AgentSassy Console</title>
+    <link rel="stylesheet" href="../../design-system/dlg-style-system/styles/theme.css" />
+    <link rel="stylesheet" href="../../design-system/dlg-style-system/styles/style.css" />
+    <link rel="stylesheet" href="./console.css" />
+  </head>
+  <body class="dark">
+    <nav class="console-nav glass-secondary">
+      <div class="console-brand">AgentSassy Console</div>
+      <div class="console-meta">
+        <span class="console-pill">local</span>
+        <span class="console-pill">control-plane</span>
+      </div>
+    </nav>
+
+    <main class="console-main">
+      <section class="console-card glass-primary">
+        <h1>Control Plane Status</h1>
+        <div class="console-status">
+          <div>
+            <div class="console-label">Service</div>
+            <div id="service-status">idle</div>
+          </div>
+          <div>
+            <div class="console-label">Last Response</div>
+            <div id="last-response">none</div>
+          </div>
+          <div>
+            <div class="console-label">Latency</div>
+            <div id="last-latency">--</div>
+          </div>
+        </div>
+        <p id="status-message" aria-live="polite"></p>
+      </section>
+
+      <section class="console-card glass-primary">
+        <h2>Submit Control Request</h2>
+        <form id="control-form">
+          <label for="intent">Intent</label>
+          <input id="intent" name="intent" type="text" value="control.request" />
+
+          <label for="payload">Payload</label>
+          <textarea id="payload" name="payload" rows="6">{}</textarea>
+
+          <button type="submit">Send Request</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="console-footer">
+      <span>AgentSassy Phase 1</span>
+      <span id="build-meta">local-dev</span>
+    </footer>
+
+    <script src="./console.js"></script>
+  </body>
+</html>

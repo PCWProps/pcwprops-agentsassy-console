@@ -1,0 +1,107 @@
+body {
+  margin: var(--blur-xs);
+  font-family: var(--font-satoshi);
+  color: var(--foreground);
+  background: var(--background);
+}
+
+.console-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--blur-md) var(--blur-lg);
+  border-bottom-width: var(--blur-xs);
+  border-bottom-style: solid;
+  border-bottom-color: var(--border);
+}
+
+.console-brand {
+  font-size: var(--font-size);
+  font-weight: var(--font-weight-bold);
+}
+
+.console-meta {
+  display: flex;
+  gap: var(--blur-xs);
+}
+
+.console-pill {
+  padding: var(--blur-xs) var(--blur-sm);
+  border-radius: var(--radius-button);
+  background: var(--surface-secondary);
+  border-width: var(--blur-xs);
+  border-style: solid;
+  border-color: var(--border);
+  font-size: var(--font-size);
+}
+
+.console-main {
+  max-width: var(--radius-large);
+  margin: var(--blur-xs) auto;
+  padding: var(--blur-lg);
+  display: grid;
+  gap: var(--blur-md);
+}
+
+.console-card {
+  padding: var(--blur-md);
+  border-radius: var(--radius-card);
+  border-width: var(--blur-xs);
+  border-style: solid;
+  border-color: var(--border);
+}
+
+.console-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--blur-sm);
+}
+
+.console-label {
+  font-size: var(--font-size);
+  text-transform: uppercase;
+  letter-spacing: var(--blur-xs);
+  color: var(--muted-foreground);
+}
+
+form {
+  display: grid;
+  gap: var(--blur-sm);
+}
+
+input,
+textarea {
+  padding: var(--blur-xs) var(--blur-sm);
+  border-radius: var(--radius);
+  border-width: var(--blur-xs);
+  border-style: solid;
+  border-color: var(--border);
+  background: var(--surface-tertiary);
+  color: var(--foreground);
+}
+
+button {
+  padding: var(--blur-sm) var(--blur-md);
+  border-radius: var(--radius-button);
+  border: none;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+}
+
+button:focus,
+input:focus,
+textarea:focus {
+  outline-width: var(--blur-xs);
+  outline-style: solid;
+  outline-color: var(--ring);
+  outline-offset: var(--blur-xs);
+}
+
+.console-footer {
+  padding: var(--blur-sm) var(--blur-lg) var(--blur-lg);
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted-foreground);
+  font-size: var(--font-size);
+}
