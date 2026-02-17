@@ -1,0 +1,93 @@
+Product/Service Name,Variant Name,Quantity on hand,Item type,"Single,parent or variant?",Category,SKU,Taxable,Option 1 name,Option 1 value,Option 2 name,Option 2 value,Option 3 name,Option 3 value,Option 4 name,Option 4 value,Option 5 name,Option 5 value,Price,Cost,Income Account,Expense Account,Inventory asset account,Sales Description,Purchase Description,Reorder Point
+1Password,,0,Service,Single,PCW Integrates:Cloud Services,1P-0001,Yes,,,,,,,,,,,95.88,95.88,,,,1Password Business Account Member with Family account,1 Password,0
+Advanced Certificate Manager,,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Cloudflare Advanced Certificate Manager,SAAS - CLOUDFLARE,0
+Airbnb Suspense Account,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Airbnb Tax Withholdings,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Argo Plan (Prorated Remainder),,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Remaining time on Argo Plan after 07 May,SAAS - CLOUDFLARE,0
+Argo Plan (Unused Time Credit),,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Unused time credit on Argo Plan after 07 May,SAAS - CLOUDFLARE,0
+Argo Zone Level Plan – Basic,,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Cloudflare Argo Smart Routing – Basic,SAAS - CLOUDFLARE,0
+Automation Monitoring & Support,,0,Service,Single,Service,DM-AUTO-SUP,Yes,,,,,,,,,,,0.0,0.0,,,,"Support & monitoring of custom automations, including updates and bug fixes.",PCW Integrates - Services,0
+Baseboard Restoration,,0,Service,Single,Service,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Scrape and sand peeling paint areas near floorboards to remove loose debris. Spot-prime with bonding primer to prevent future peeling. Patch and smooth.,,0
+Basic Load Balancing,,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Cloudflare Basic Load Balancing,SAAS - CLOUDFLARE,0
+Bespoke 6.3 CU . FT. Induction range,,0,Service,Single,Service,,No,,,,,,,,,,,,,,,,"CUSTOM:- Anti-Scratch Matte Glass Cooktop¹: 54% more scratch resistant² and more durable keeping your range looking like new.
+- Bespoke design: Give your kitchen a premium look with a contemporary Bespoke design and a recessed handle that suits your style and elevates your home.
+- 4.3kW Induction Cooktop with 7"" Sync Burner: Ideal for sautéing and searing meat, boiling water quickly or cooking food fast.",,0
+Cache Reserve Reads,,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Cloudflare Cache Reserve Reads,SAAS - CLOUDFLARE,0
+Cache Reserve Storage (GB/Month),,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Cloudflare Cache Reserve Storage (per GB),SAAS - CLOUDFLARE,0
+Cache Reserve Writes,,0,Service,Single,PCW Integrates:Cloud Services,,Yes,,,,,,,,,,,,,,,,Cloudflare Cache Reserve Writes,SAAS - CLOUDFLARE,0
+Custom Automations Development,,0,Service,Single,Service,DM-AUTO-DEV,Yes,,,,,,,,,,,0.0,0.0,,,,"Shopify automations: automated ordering, inventory sync, return authorization workflow.",PCW Integrates - Services,0
+CyberSecure,,0,Service,Single,PCW Integrates:Remote Connection Service,,Yes,,,,,,,,,,,,,,,,Unifi CyberSecure Protection,Unifi CyberSecure Protection,0
+Designer Rate,,0,Service,Single,Service,,No,,,,,,,,,,,0.0,0.0,,,,"CUSTOM:Sep 7, 2025
+Houzz Pro - Dashboard setup and walkthrough,Houzz idea board setup and walkthrough",,0
+Document Upload,,0,Service,Single,PCW Integrates:Remote Connection Service,,Yes,,,,,,,,,,,,,,,,Document created from file upload,,0
+General Touch-Ups,,0,Service,Single,Service,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Fill miscellaneous nail holes/dents and spot paint to match.,,0
+Github Subscription,,0,Service,Single,PCW Integrates:Cloud Services,GH-0001,Yes,,,,,,,,,,,50.0,100.0,,,,Github Organization Seat with Copilot Pro Integration,Github,0
+Home Assistant Cloud,,0,Service,Single,PCW Integrates:Cloud Services,HA-0001,Yes,,,,,,,,,,,70.92,70.92,,,,Home Assistant Cloud 1 Year Subscription,Nabu Casa Inc.,0
+IoT Device Setup,,0,Service,Single,PCW Integrates:Remote Connection Service,,Yes,,,,,,,,,,,,,,,,Asstance connecting IoT to Home Network and SmartHome Enviroment,,0
+KING SUITE 1 NIGHT,,0,Service,Single,PCW Manages,KS-1N,Yes,,,,,,,,,,,129.0,0.0,,,,,,0
+King Suite - Cleaning Fee,,0,Service,Single,PCW Manages,KS-CF,Yes,,,,,,,,,,,99.0,0.0,,,,Cleaning fee for King Suite Stay,,0
+Labor for Baseboard Restoration,,0,Service,Single,Processing_Fee,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Processing Fee on Labor for Baseboard Restoration,,0
+Labor for Designer Rate,,0,Service,Single,Processing_Fee,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Processing Fee on Labor for Designer Rate,,0
+Labor for General Touch-Ups,,0,Service,Single,Processing_Fee,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Processing Fee on Labor for General Touch-Ups,,0
+Labor for Staircase Trim,,0,Service,Single,Processing_Fee,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Processing Fee on Labor for Staircase Trim,,0
+Managed Hosting & Site Maintenance,,0,Service,Single,Service,DM-HOST-MAINT,Yes,,,,,,,,,,,0.0,0.0,,,,"Ongoing WordPress hosting, plugin updates, backups, and performance monitoring.",PCW Integrates - Services,0
+Network Installation,,0,Service,Single,PCW Integrates:Remote Connection Service,,Yes,,,,,,,,,,,,,,,,Home Network Setup and SSID Configuration,,0
+Network Monitoring and Fine Tuning,,0,Service,Single,PCW Integrates:Remote Connection Service,PCW-NET-MON,Yes,,,,,,,,,,,0.0,0.0,,,,"Network Health Checks, Device Updating and Routing, Remote Monitoring",,0
+Off Site Labor (Hourly),,0,Service,Single,PCW Integrates:Remote Connection Service,,Yes,,,,,,,,,,,,,,,,Off Site Labor for Design and Install,,0
+On Site Labor (Hourly),,0,Service,Single,PCW Integrates:Remote Connection Service,,Yes,,,,,,,,,,,,,,,,On Site Labor for Design and Install,,0
+PayPal discount item,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+PayPal gift card item,,0,Service,Single,,,Yes,,,,,,,,,,,0.0,0.0,,,,,,0
+PayPal sales item,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+PayPal sales tax item,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+PayPal sale tips item,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+PayPal shipping item,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Receipt payment #PY-5185057,,0,Service,Single,Credit,,No,,,,,,,,,,,,,,,,Payment of $2439.24 on Estimate #ES-10001HZ (Houzz Pro Payment ID 5185057),,0
+Receipt payment #PY-5409434,,0,Service,Single,Credit,,No,,,,,,,,,,,,,,,,Payment of $535.95 on Estimate #ES-10002HZ (Houzz Pro Payment ID 5409434),,0
+Rental Costs - Airbnb Amounts Due to Owner,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Costs - Airbnb Service Fee,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Costs - Vrbo Amounts Due to Owner,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Costs - Vrbo Base Commission Fee,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Costs - Vrbo Payment Processor Fee,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Liability - Airbnb Custom Taxes Payable,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Liability - Airbnb Owner Funds Payable,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Liability - Vrbo Owner Funds Payable,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Liability - Vrbo Taxes Payable,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Airbnb Income - Accommodation Fare,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Airbnb Income - Cleaning Fee,,0,Service,Single,,,Yes,,,,,,,,,,,0.0,0.0,,,,,,0
+Rental Revenue - Airbnb Income - Resolution Adjustment,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Airbnb Refund - Accommodation Fare,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Airbnb Refund - Cleaning Fee,,0,Service,Single,,,Yes,,,,,,,,,,,0.0,0.0,,,,,,0
+Rental Revenue - Airbnb Refund - Resolution Adjustment,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Vrbo Income - Accommodation Fare,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Vrbo Income - Cleaning Fee,,0,Service,Single,,,Yes,,,,,,,,,,,0.0,0.0,,,,,,0
+Rental Revenue - Vrbo Income - Other Fees Collected,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Rental Revenue - Vrbo Refunds,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Sales Tax,,0,Service,Single,Tax,,No,,,,,,,,,,,,,,,,Sales Tax Paid to Vendor,,0
+Services,,0,Service,Single,,,Yes,,,,,,,,,,,0.0,0.0,,,,,,0
+Shopify App Installation & Configuration,,0,Service,Single,Shopify,SHOP-APP-INSTALL,No,,,,,,,,,,,150.0,0.0,,,,Installation and configuration of approved Shopify apps.,,0
+Shopify App Stack Optimization,,0,Service,Single,Shopify,SHOP-APP-OPT,No,,,,,,,,,,,300.0,0.0,,,,Review and optimization of installed Shopify apps to reduce bloat and improve performance.,,0
+Shopify Content Updates,,0,Service,Single,Shopify,SHOP-CONTENT,No,,,,,,,,,,,100.0,0.0,,,,"Product, page, or collection content updates within Shopify.",,0
+Shopify Conversion Optimization (Light),,0,Service,Single,Shopify,SHOP-CRO-LT,No,,,,,,,,,,,400.0,0.0,,,,Light conversion rate optimization including layout adjustments and CTA improvements.,,0
+Shopify Maintenance (Advanced Monthly),,0,Service,Single,Shopify,SHOP-MAINT-ADV,No,,,,,,,,,,,600.0,0.0,,,,"Advanced Shopify maintenance including ongoing optimization, CRO tweaks, and enhanced support.",,0
+Shopify Maintenance (Basic Monthly),,0,Service,Single,Shopify,SHOP-MAINT-BASIC,No,,,,,,,,,,,150.0,0.0,,,,"Basic monthly Shopify maintenance including updates, minor fixes, and general support.",,0
+Shopify Maintenance (Standard Monthly),,0,Service,Single,Shopify,SHOP-MAINT-STD,No,,,,,,,,,,,300.0,0.0,,,,"Standard monthly Shopify maintenance with performance monitoring, small UX improvements, and priority support.",,0
+Shopify Management Support,,0,Service,Single,Service,DM-SHOP-SUP,Yes,,,,,,,,,,,0.0,0.0,,,,"Vendor onboarding, inventory management, and Shopify support services.",PCW Integrates - Services,0
+Shopify Monthly Growth Support,,0,Service,Single,Shopify,SHOP-GROWTH-M,No,,,,,,,,,,,500.0,0.0,,,,Ongoing Shopify support focused on gradual performance and usability improvements.,,0
+Shopify SEO Hygiene,,0,Service,Single,Shopify,SHOP-SEO-HYG,No,,,,,,,,,,,300.0,0.0,,,,"Basic SEO hygiene including meta data cleanup, broken link fixes, and image optimization.",,0
+Shopify Site Cleanup (Full),,0,Service,Single,Shopify,SHOP-CLEAN-FULL,No,,,,,,,,,,,1500.0,0.0,,,,"Full Shopify site cleanup including app stack overhaul, theme refactor, UX improvements, and performance optimization.",,0
+Shopify Site Cleanup (Light),,0,Service,Single,Shopify,SHOP-CLEAN-LT,No,,,,,,,,,,,300.0,0.0,,,,"Light cleanup of existing Shopify store including app cleanup, minor theme fixes, mobile adjustments, and navigation cleanup.",,0
+Shopify Site Cleanup (Light),,0,Service,Single,Service,SHOP-CLEAN-LT,Yes,,,,,,,,,,,300.0,0.0,,,,"Light cleanup and polish of existing Shopify store, including app cleanup, minor theme fixes, mobile adjustments, and navigation cleanup.",,0
+Shopify Site Cleanup (Standard),,0,Service,Single,Shopify,SHOP-CLEAN-STD,No,,,,,,,,,,,750.0,0.0,,,,"Standard Shopify cleanup including app optimization, theme cleanup, navigation improvements, and performance tuning.",,0
+Shopify Speed Optimization,,0,Service,Single,Shopify,SHOP-SPEED,No,,,,,,,,,,,350.0,0.0,,,,Performance optimization focused on improving Shopify site load times and responsiveness.,,0
+Shopify Store Audit,,0,Service,Single,Shopify,SHOP-AUDIT,No,,,,,,,,,,,250.0,0.0,,,,"Comprehensive audit of Shopify store covering theme, apps, performance, UX, and configuration.",,0
+Shopify Theme Optimization,,0,Service,Single,Shopify,SHOP-THEME-OPT,No,,,,,,,,,,,400.0,0.0,,,,"Theme-level optimization including layout fixes, mobile improvements, and performance tuning.",,0
+Shopify Troubleshooting & Bug Fixes,,0,Service,Single,Shopify,SHOP-SUPPORT,No,,,,,,,,,,,125.0,0.0,,,,Troubleshooting and resolution of Shopify site issues or bugs.,,0
+"Spa Drain, Clean, & Fill Service",,0,Service,Single,,SPA-DCF,Yes,,,,,,,,,,,350.0,0.0,,,,"Water will be drained, the shell will be cleaned, and the water will be left balanced and
+ready for use.",,0
+Staircase Trim,,0,Service,Single,Service,,No,,,,,,,,,,,0.0,0.0,,,,CUSTOM:Caulk open gaps on stair skirt boards and repaint all stair baseboards/skirt boards for a clean finish.,,0
+Vrbo Advanced Guest Deposits,,0,Service,Single,,,No,,,,,,,,,,,,,,,,,,0
+Website License Bundle,,0,Service,Single,PCW Integrates:Cloud Services,WEB-LIS,Yes,,,,,,,,,,,0.0,0.0,,,,"Annual bundle covering Elementor Pro, WordPress hosting/license, Shopify plan, FluentCRM, LearnDash, AffiliateWP, forms/email plugin stack, and Zapier subscription.",PCW Integrates - Services,0
+Website Migration,,0,Service,Single,Service,DM-MIG-SHOP,Yes,,,,,,,,,,,0.0,0.0,,,,Full migration of Dynamic Marching from Squarespace/CC360 to Shopify with product import.,PCW Integrates - Services,0
+Woocommerce Shipping Item,,0,Service,Single,,,No,,,,,,,,,,,0.0,0.0,,,,,,0
+WordPress Frontend Build,,0,Service,Single,Service,DM-WP-BUILD,Yes,,,,,,,,,,,0.0,0.0,,,,"WordPress site development with Elementor Pro, theme styling, and Shopify integration.",PCW Integrates - Services,0
+Workers Paid,,0,Service,Single,,CF009,Yes,,,,,,,,,,,0.0,0.0,,,,Cloudflare Workers Paid,SAAS - CLOUDFLARE,0
